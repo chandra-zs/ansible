@@ -31,16 +31,16 @@
         replace: /var/www/html/todo/frontend/dist
 
     - name: Replace ip with login ip
-        replace:
+      replace:
           path: /var/www/html/todo/frontend/config/index.js
-          regexp: 127.0.0.1
-          replace: 172.31.62.90
+          regexp: '127.0.0.1'
+          replace: '172.31.62.90'
 
     - name: Replace ip with todo ip
-        replace:
+      replace:
           path: /var/www/html/todo/frontend/config/index.js
           regexp: '127.0.0.2'
-          replace: "172.31.55.237"
+          replace: '172.31.55.237'
 
     - name: start npm
       shell: npm start
