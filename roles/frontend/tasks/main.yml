@@ -18,6 +18,9 @@
         username: admin
         password: admin123
 
+    - name: install npm
+      shell: npm install
+
     - name: run npm build
       shell: npm run build
 
