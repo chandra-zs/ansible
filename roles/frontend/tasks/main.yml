@@ -1,11 +1,9 @@
 
     - name: install nginx
       apt:
-        pkg:
-        - nginx
-        - npm
-      #state: present
-      update_cache: yes
+        name: nginx
+        state: present
+        update_cache: yes
 
     - name: start & enable nginx
       systemd:
