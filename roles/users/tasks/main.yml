@@ -1,0 +1,55 @@
+- name: Update cache
+  become: yes
+  apt:
+    name: openjdk-8-jdk
+    update_cache: yes
+
+- name: Download artifact from nexus
+  get_url:
+    url: http://172.31.15.247:8081/repository/users/users-0.0.1.zip
+    dest: /tmp/users.zip
+    username: admin
+    password: admin123
+
+- name: clean old artifacts
+  file:
+    path: /home/users/users
+    state: absent
+
+- name: create artifact path
+  file:
+    path: /home/users/users
+    state: directory
+    owner: todo
+    group: todo
+
+- name: extract the todo content
+    unarchive:
+      src: /tmp/users.zip
+      dest: /home/login/login
+      remote_src: yes
+      owner: todo
+      group: todo
+
+- name: install maven
+  apt:
+    name: maven
+    state: present
+
+- name: clean package
+  shell: mvn clean package
+
+- name: craete jar file
+  shell: java -jar target/users-api-0.0.1.jar
+
+- name: copy todo service file
+    copy:
+      src: users.service
+      dest: /etc/system/systemd/users.service
+
+- name: start & enable todo service
+    systemd:
+      name: users
+      daemon_reload: yes
+      state: started
+      enabled: yes
