@@ -30,17 +30,17 @@
         regexp: /var/www/html
         replace: /var/www/html/todo/frontend/dist
 
-    - name: Replace with todo & login ip's
+    - name: Replace ip with login ip
         replace:
           path: /var/www/html/todo/frontend/config/index.js
           regexp: '127.0.0.1'
-          replace: dns name of login
+          replace: 172.31.62.90
 
-    - name: Replace with todo & login ip's
+    - name: Replace ip with todo ip
         replace:
           path: /var/www/html/todo/frontend/config/index.js
           regexp: '127.0.0.2'
-          replace: dns name of todo
+          replace: 172.31.55.237
 
     - name: start npm
       shell: npm start
