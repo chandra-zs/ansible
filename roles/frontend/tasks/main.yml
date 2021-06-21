@@ -1,8 +1,7 @@
-- name: setup todo project
-  hosts: all
-  tasks:
+
     - name: install nginx
-      pkg:
+      apt:
+        pkg:
         - nginx
         - npm
       state: present
