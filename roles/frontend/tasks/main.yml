@@ -4,6 +4,7 @@
         name: nginx
         update_cache: yes
         state: present
+        become: yes
 
     - name: start & enable nginx
       systemd:
