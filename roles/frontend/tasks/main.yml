@@ -20,11 +20,12 @@
         username: admin
         password: admin123
 
+
     - name: install npm
-      shell: npm install
+        shell: npm install
 
     - name: run npm build
-      shell: npm run build
+        shell: npm run build
 
     - name: change root path in nginx
       replace:
