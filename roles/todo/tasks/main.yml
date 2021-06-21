@@ -1,0 +1,47 @@
+
+    - name: install npm
+      apt: npm
+      state: present
+      update_cache: yes
+
+    - name: Download todo artifact from nexus
+      get_url:
+        url: http://172.31.15.247:8081/repository/todo/todo-0.0.1.zip
+        dest: /tmp/todo.zip
+        username: admin
+        password: admin123
+
+    - name: clean old artifact path
+      file:
+        path: /home/todo/todo
+        state: absent
+
+    - name: create the artifact path
+      file:
+        path: /home/todo/todo
+        state: directory
+        owner: todo
+        group: todo
+
+    - name: extract the todo content
+      unarchive:
+        src: /tmp/todo.zip
+        dest: /home/todo/todo
+        remote_src: yes
+        owner: todo
+        group: todo
+
+
+    - name: copy todo service file
+      copy:
+        src: todo.service
+        dest: /etc/system/systemd/todo.service
+
+    - name: start & enable todo service
+      systemd:
+        name: todo
+        daemon_reload: yes
+        state: started
+        enabled: yes
+
+

@@ -1,0 +1,6 @@
+- name: setup todo project
+  hosts: all
+  roles:
+    - role: frontend
+      tags: frontend
+      when: COMPONENT == "frontend"

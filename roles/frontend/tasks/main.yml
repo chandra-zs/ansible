@@ -1,0 +1,53 @@
+- name: setup todo project
+  hosts: all
+  tasks:
+    - name: install nginx
+      pkg:
+        - nginx
+        - npm
+        state: present
+        update_cache: yes
+
+    - name: start & enable nginx
+      systemd:
+        state: started
+        name: nginx
+        enabled: yes
+
+    - name: Download artifact from nexus
+      get_url:
+        url: http://172.31.15.247:8081/repository/frontend/frontend-0.0.1.zip
+        dest: /tmp/frontend.zip
+        username: admin
+        password: admin123
+
+    - name: run npm build
+      shell: npm run build
+
+    - name: change root path in nginx
+      replace:
+        path: /etc/nginx/sites-available/default
+        regexp: /var/www/html
+        replace: /var/www/html/todo/frontend/dist
+
+    - name: Replace with todo & login ip's
+        replace:
+          path: /var/www/html/todo/frontend/config/index.js
+          regexp: '127.0.0.1'
+          replace: dns name of login
+
+    - name: Replace with todo & login ip's
+        replace:
+          path: /var/www/html/todo/frontend/config/index.js
+          regexp: '127.0.0.2'
+          replace: dns name of todo
+
+    - name: start npm
+      shell: npm start
+
+    - name: restart nginx
+      systemd:
+        state: restarted
+        name: nginx
+
+
