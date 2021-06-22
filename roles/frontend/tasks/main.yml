@@ -30,8 +30,8 @@
     - name: change root path in nginx
       replace:
         path: /etc/nginx/sites-available/default
-        regexp: /var/www/html
-        replace: /var/www/html/todo/frontend/dist
+        regexp: '/var/www/html'
+        replace: '/var/www/html/todo/frontend/dist'
 
     - name: Replace ip with login ip
       replace:
