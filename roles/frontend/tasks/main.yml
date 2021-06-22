@@ -16,7 +16,7 @@
     - name: Download artifact from nexus
       get_url:
         url: http://172.31.15.247:8081/repository/frontend/frontend-0.0.1.zip
-        dest: /root/frontend.zip
+        dest: /root/frontend/
         username: admin
         password: admin123
 
@@ -33,7 +33,7 @@
 
     - name: extract the todo content
       unarchive:
-        src: /root/frontend.zip
+        src: /root/frontend/
         dest: /home/frontend/frontend
         remote_src: yes
 
