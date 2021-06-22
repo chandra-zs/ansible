@@ -22,19 +22,19 @@
 
     - name: clean old artifact path
         file:
-          path: /home/frontend
+          path: /home/frontend/frontend
           state: absent
 
     - name: create the artifact path
         file:
-          path: /home/frontend
+          path: /home/frontend/frontend
           state: directory
 
 
     - name: extract the todo content
         unarchive:
           src: /root/frontend
-          dest: /home/frontend
+          dest: /home/frontend/frontend
           remote_src: yes
 
 
