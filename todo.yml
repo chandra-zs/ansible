@@ -5,16 +5,5 @@
       tags: frontend
       when: COMPONENT == "frontend"
 
-    - role: login
-      tags: login
-      when: COMPONENT == "login"
-
-    - role: todo
-      tags: todo
-      when: COMPONENT == "todo"
-
-    - role: users
-      tags: users
-      when: COMPONENT == "users"
 
 
