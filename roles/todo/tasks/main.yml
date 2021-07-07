@@ -19,6 +19,7 @@
         state: absent
 
     - name: Add the user 'todo' with a bash shell
+      become: yes
       user:
         name: todo
         shell: /bin/bash
