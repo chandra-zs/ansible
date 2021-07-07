@@ -15,7 +15,7 @@
 - name: Download artifact from nexus
   become: yes
   get_url:
-    url: http://172.31.15.247:8081/repository/users/users-0.0.1.zip
+    url: http://172.31.15.247:8081/repository/users/users-{{APP_VERSION}}.zip
     dest: /tmp/users.zip
     username: admin
     password: admin123
