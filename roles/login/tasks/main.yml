@@ -15,14 +15,14 @@
   file:
     path: /root/go
     state: directory
-    mode: '0755'
+    mode: '0777'
 
 - name: Create a src directory if it does not exist
   become: yes
   file:
     path: /root/go/src
     state: directory
-    mode: '0755'
+    mode: '0777'
 
 - name: Download artifact from nexus
   get_url:
