@@ -21,6 +21,7 @@
     password: admin123
 
 - name: clean old artifacts
+  become: yes
   file:
     path: /home/users/users
     state: absent
