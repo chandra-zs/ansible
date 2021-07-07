@@ -20,9 +20,13 @@
         username: admin
         password: admin123
 
+    - name: creat a directory
+      file:
+        path: /home/frontend/frontend
+
     - name: extract the todo content
       unarchive:
-        src: /root/frontend
+        src: /tmp/frontend.zip
         dest: /home/frontend/frontend
         remote_src: yes
 
