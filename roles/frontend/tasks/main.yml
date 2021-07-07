@@ -21,39 +21,27 @@
         - /etc/nginx/sites-enabled/default
         - /etc/nginx/sites-available/default
 
-    - name: creat a directory
+    - name: Create HtDocs Directory
       file:
-        path: /home/frontend/frontend
+        path: /var/www/html/frontend
+        state: directory
 
     - name: extract the todo content
       unarchive:
         src: /tmp/frontend.zip
-        dest: /home/frontend/frontend
+        dest: /var/www/html/frontend
         remote_src: yes
+
+    - name: Update Todoshop Config file
+      copy:
+        src: todo.conf
+        dest: /etc/nginx/sites-enabled/todo.conf
 
     - name: install npm
       shell: sudo npm install
 
     - name: run npm build
       shell: npm run build
-
-    - name: change root path in nginx
-      replace:
-        path: /etc/nginx/sites-available/default
-        regexp: '/var/www/html'
-        replace: '/var/www/html/todo/frontend/dist'
-
-    - name: Replace ip with login ip
-      replace:
-          path: /var/www/html/todo/frontend/config/index.js
-          regexp: '127.0.0.1'
-          replace: '172.31.62.90'
-
-    - name: Replace ip with todo ip
-      replace:
-          path: /var/www/html/todo/frontend/config/index.js
-          regexp: '127.0.0.2'
-          replace: '172.31.55.237'
 
     - name: start npm
       shell: npm start
