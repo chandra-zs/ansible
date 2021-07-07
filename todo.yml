@@ -9,9 +9,7 @@
       tags: users
       when: COMPONENT == "users"
 
-    - role: todo
-      tags: todo
-      when: COMPONENT == "todo"
+
 
 
 
