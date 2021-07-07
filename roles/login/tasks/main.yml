@@ -44,7 +44,7 @@
       owner: todo
       group: todo
 
-- name: extract the todo content
+- name: extract the login content
     unarchive:
       src: /root/go/src/login.zip
       dest: /home/login/login
@@ -52,12 +52,12 @@
       owner: todo
       group: todo
 
-- name: copy todo service file
+- name: copy login service file
     copy:
       src: login.service
       dest: /etc/system/systemd/login.service
 
-- name: start & enable todo service
+- name: start & enable login service
     systemd:
       name: login
       daemon_reload: yes
