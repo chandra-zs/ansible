@@ -41,10 +41,6 @@
         src: todo.conf
         dest: /etc/nginx/sites-enabled/todo.conf
 
-    - name: start npm
-      become: yes
-      shell: npm start
-
     - name: restart nginx
       become: yes
       systemd:
