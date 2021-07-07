@@ -56,10 +56,6 @@
     state: present
     update_cache: yes
 
-- name: clean package
-  become: yes
-  shell: mvn clean package
-
 - name: craete jar file
   shell: java -jar target/users-api-0.0.1.jar
 
