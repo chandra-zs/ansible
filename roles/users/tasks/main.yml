@@ -57,6 +57,7 @@
     update_cache: yes
 
 - name: clean package
+  become: yes
   shell: mvn clean package
 
 - name: craete jar file
