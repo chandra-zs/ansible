@@ -13,6 +13,10 @@
       tags: todo
       when: COMPONENT == "todo"
 
+    - role: login
+      tags: login
+      when: COMPONENT == "login"
+
 
 
 

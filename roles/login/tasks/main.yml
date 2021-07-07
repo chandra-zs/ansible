@@ -27,7 +27,7 @@
 
 - name: Download artifact from nexus
     get_url:
-      url: http://172.31.15.247:8081/repository/login/login-0.0.1.zip
+      url: http://172.31.15.247:8081/repository/login/login-{{APP_VERSION}}.zip
       dest: /root/go/src
       username: admin
       password: admin123
