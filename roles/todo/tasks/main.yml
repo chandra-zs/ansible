@@ -9,7 +9,7 @@
     - name: Download todo artifact from nexus
       get_url:
         url: http://172.31.15.247:8081/repository/todo/todo-{{APP_VERSION}}.zip
-        dest: /tmp
+        dest: /tmp/todo.zip
         username: admin
         password: admin123
 
