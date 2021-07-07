@@ -1,8 +1,9 @@
 
     - name: install npm
-      apt: npm
-      state: present
-      update_cache: yes
+      apt:
+        name: npm
+        state: present
+        update_cache: yes
 
     - name: Download todo artifact from nexus
       get_url:
