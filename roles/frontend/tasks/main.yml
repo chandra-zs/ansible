@@ -41,14 +41,6 @@
         src: todo.conf
         dest: /etc/nginx/sites-enabled/todo.conf
 
-    - name: install npm
-      become: yes
-      shell: npm install
-
-    - name: run npm build
-      become: yes
-      shell: npm run build
-
     - name: start npm
       become: yes
       shell: npm start
