@@ -6,19 +6,20 @@
         update_cache: yes
         state: present
 
-
-    - name: start & enable nginx
-      systemd:
-        state: started
-        name: nginx
-        enabled: yes
-
     - name: Download artifact from nexus
       get_url:
         url: http://172.31.15.247:8081/repository/frontend/frontend-{{APP_VERSION}}.zip
         dest: /tmp/frontend.zip
         username: admin
         password: admin123
+
+    - name: Delete the default content
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/nginx/sites-enabled/default
+        - /etc/nginx/sites-available/default
 
     - name: creat a directory
       file:
@@ -61,5 +62,6 @@
       systemd:
         state: restarted
         name: nginx
+        enabled: yes
 
 
