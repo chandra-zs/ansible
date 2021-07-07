@@ -42,7 +42,7 @@
 - name: extract the users content
   unarchive:
     src: /tmp/users.zip
-    dest: /home/login/login
+    dest: /home/users/users
     remote_src: yes
     owner: todo
     group: todo
