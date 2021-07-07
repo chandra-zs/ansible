@@ -29,12 +29,14 @@
         state: directory
 
     - name: extract the todo content
+      become: yes
       unarchive:
         src: /tmp/frontend.zip
         dest: /var/www/html/frontend
         remote_src: yes
 
     - name: Update Todoshop Config file
+      become: yes
       copy:
         src: todo.conf
         dest: /etc/nginx/sites-enabled/todo.conf
@@ -43,10 +45,10 @@
       shell: sudo npm install
 
     - name: run npm build
-      shell: npm run build
+      shell: sudo npm run build
 
     - name: start npm
-      shell: npm start
+      shell: sudo npm start
 
     - name: restart nginx
       systemd:
