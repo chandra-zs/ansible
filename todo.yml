@@ -6,12 +6,12 @@
       when: COMPONENT == "frontend"
 
     - role: todo
-      tags: todo
-      when: COMPONENT == "todo"
-
-    - role: todo
       tags: users
       when: COMPONENT == "users"
+
+    - role: todo
+      tags: todo
+      when: COMPONENT == "todo"
 
 
 
