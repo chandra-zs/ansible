@@ -4,61 +4,70 @@
     update_cache: yes
 
 - name: Install go
+  become: yes
   apt_key:
     url: https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O -
     state: present
 
-- name: Unarchives the zip file
-  unarchive:
-  src: /test1/project.zip
-  dest: /test2
 
 - name: Create a go directory if it does not exist
+  become: yes
   file:
     path: /root/go
     state: directory
     mode: '0755'
 
 - name: Create a src directory if it does not exist
+  become: yes
   file:
     path: /root/go/src
     state: directory
     mode: '0755'
 
 - name: Download artifact from nexus
-    get_url:
-      url: http://172.31.15.247:8081/repository/login/login-{{APP_VERSION}}.zip
-      dest: /root/go/src
-      username: admin
-      password: admin123
+  get_url:
+    url: http://172.31.15.247:8081/repository/login/login-{{APP_VERSION}}.zip
+    dest: /root/go/src
+    username: admin
+    password: admin123
 
 - name: clean old artifact path
-    file:
-      path: /home/login/login
-      state: absent
+  become: yes
+  file:
+     path: /home/login/login
+     state: absent
 
 - name: create the artifact path
-    file:
-      path: /home/login/login
-      state: directory
-      owner: todo
-      group: todo
+  become: yes
+  file:
+     path: /home/login/login
+     state: directory
+     owner: todo
+     group: todo
+- name: Add the user 'todo' with a bash shell
+  become: yes
+  user:
+     name: todo
+     shell: /bin/bash
 
 - name: extract the login content
-    unarchive:
-      src: /root/go/src/login.zip
-      dest: /home/login/login
-      remote_src: yes
-      owner: todo
-      group: todo
+  become: yes
+  unarchive:
+     src: /root/go/src/login.zip
+     dest: /home/login/login
+     remote_src: yes
+     owner: todo
+     group: todo
 
 - name: copy login service file
-    copy:
+  become: yes
+  copy:
       src: login.service
       dest: /etc/system/systemd/login.service
 
 - name: start & enable login service
-    systemd:
+  become: yes
+  systemd:
       name: login
       daemon_reload: yes
       state: started
