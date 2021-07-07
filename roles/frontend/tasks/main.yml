@@ -23,6 +23,7 @@
         - /etc/nginx/sites-available/default
 
     - name: Create HtDocs Directory
+      become: yes
       file:
         path: /var/www/html/frontend
         state: directory
