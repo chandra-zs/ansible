@@ -56,9 +56,6 @@
     state: present
     update_cache: yes
 
-- name: craete jar file
-  shell: java -jar target/users-api-0.0.1.jar
-
 - name: copy users service file
   become: yes
   copy:
