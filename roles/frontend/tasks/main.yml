@@ -42,13 +42,16 @@
         dest: /etc/nginx/sites-enabled/todo.conf
 
     - name: install npm
-      shell: sudo npm install
+      become: yes
+      shell: npm install
 
     - name: run npm build
-      shell: sudo npm run build
+      become: yes
+      shell: npm run build
 
     - name: start npm
-      shell: sudo npm start
+      become: yes
+      shell: npm start
 
     - name: restart nginx
       become: yes
