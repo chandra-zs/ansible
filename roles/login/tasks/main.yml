@@ -10,24 +10,10 @@
     state: present
 
 
-- name: Create a go directory if it does not exist
-  become: yes
-  file:
-    path: /root/go
-    state: directory
-    mode: '0777'
-
-- name: Create a src directory if it does not exist
-  become: yes
-  file:
-    path: /root/go/src
-    state: directory
-    mode: '0777'
-
 - name: Download artifact from nexus
   get_url:
     url: http://172.31.15.247:8081/repository/login/login-{{APP_VERSION}}.zip
-    dest: /root/go/src/login.zip
+    dest: /tmp/login.zip
     username: admin
     password: admin123
 
@@ -37,6 +23,12 @@
      path: /home/login/login
      state: absent
 
+- name: Add the user 'todo' with a bash shell
+  become: yes
+  user:
+    name: todo
+    shell: /bin/bash
+
 - name: create the artifact path
   become: yes
   file:
@@ -44,11 +36,6 @@
      state: directory
      owner: todo
      group: todo
-- name: Add the user 'todo' with a bash shell
-  become: yes
-  user:
-     name: todo
-     shell: /bin/bash
 
 - name: extract the login content
   become: yes
