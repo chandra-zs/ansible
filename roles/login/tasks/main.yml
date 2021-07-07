@@ -50,7 +50,7 @@
   become: yes
   copy:
       src: login.service
-      dest: /etc/system/systemd/login.service
+      dest: /etc/systemd/system/login.service
 
 - name: start & enable login service
   become: yes
