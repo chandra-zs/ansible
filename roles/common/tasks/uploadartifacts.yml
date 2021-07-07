@@ -1,0 +1,35 @@
+- name: Download todo artifact from nexus
+  get_url:
+    url: http://172.31.15.247:8081/repository/todo/todo-{{APP_VERSION}}.zip
+    dest: /tmp/todo.zip
+    username: admin
+    password: admin123
+
+- name: clean old artifact path
+  become: yes
+  file:
+    path: /home/todo/todo
+    state: absent
+
+- name: Add the user 'todo' with a bash shell
+  become: yes
+  user:
+    name: todo
+    shell: /bin/bash
+
+- name: create the artifact path
+  become: yes
+  file:
+    path: /home/todo/todo
+    state: directory
+    owner: todo
+    group: todo
+
+- name: extract the todo content
+  become: yes
+  unarchive:
+    src: /tmp/todo.zip
+    dest: /home/todo/todo
+    remote_src: yes
+    owner: todo
+    group: todo

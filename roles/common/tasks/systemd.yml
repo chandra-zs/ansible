@@ -1,0 +1,14 @@
+- name: copy todo service file
+    become: yes
+    copy:
+      src: todo.service
+      dest: /etc/systemd/system/todo.service
+
+- name: start & enable todo service
+  become: yes
+  systemd:
+      name: todo
+      daemon_reload: yes
+      state: started
+      enabled: yes
+
