@@ -40,7 +40,7 @@
 - name: extract the login content
   become: yes
   unarchive:
-     src: /root/go/src/login.zip
+     src: /tmp/login.zip
      dest: /home/login/login
      remote_src: yes
      owner: todo
