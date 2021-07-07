@@ -60,7 +60,7 @@
   become: yes
   copy:
     src: users.service
-    dest: /etc/system/systemd/users.service
+    dest: /etc/systemd/system/users.service
 
 - name: start & enable users service
   become: yes
