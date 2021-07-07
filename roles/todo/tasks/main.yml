@@ -27,6 +27,7 @@
 
 
     - name: create the artifact path
+      become: yes
       file:
         path: /home/todo/todo
         state: directory
@@ -34,6 +35,7 @@
         group: todo
 
     - name: extract the todo content
+      become: yes
       unarchive:
         src: /tmp/todo.zip
         dest: /home/todo/todo
