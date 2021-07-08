@@ -1,6 +1,7 @@
 [Unit]
 Description=User Service
 [Service]
+User=root
 ExecStart=java -jar /home/users/users
 Environment=SERVER_PORT=8080
 SyslogIdentifier=users
