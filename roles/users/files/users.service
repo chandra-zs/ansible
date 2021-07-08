@@ -2,7 +2,7 @@
 Description=User Service
 [Service]
 User=todo
-ExecStart=java -jar /home/users/users/users-ci
+ExecStart=java -jar /home/users/users/users.jar
 Environment=SERVER_PORT=8080
 SyslogIdentifier=users
 [Install]
