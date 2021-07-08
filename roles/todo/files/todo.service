@@ -4,7 +4,7 @@ Description = Todo Service
 [Service]
 User=todo
 Environment=REDIS_HOST=172.31.19.53
-ExecStart=/bin/node /home/todo/todo/todo-ci
+ExecStart=/bin/node /home/todo/todo/server.js
 SyslogIdentifier=todo
 Restart=on-failure
 
