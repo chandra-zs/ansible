@@ -1,16 +1,19 @@
 - name: install redis server
+  become: yes
   apt:
     name: redis-server
     state: present
     update_cache: yes
 
 - name: update redis config
+  become: yes
   replace:
     path: /etc/redis/redis.conf
     regexp: '127.0.0.1'
     replace: '0.0.0.0'
 
 - name: start redis
+  become: yes
   systemd:
     name: redis
     state: restarted
