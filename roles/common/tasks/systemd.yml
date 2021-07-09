@@ -1,13 +1,13 @@
 - name: copy {{COMPONENT}} service file
   become: yes
   template:
-      src: {{COMPONENT}}.service
+      src: "{{COMPONENT}}.service"
       dest: /etc/systemd/system/{{COMPONENT}}.service
 
 - name: start & enable {{COMPONENT}} service
   become: yes
   systemd:
-      name: {{COMPONENT}}
+      name: "{{COMPONENT}}"
       daemon_reload: yes
       state: started
       enabled: yes
