@@ -1,2 +1,3 @@
 - name: set hostname
+  become: yes
   shell: set-hostname {{COMPONENT}}
