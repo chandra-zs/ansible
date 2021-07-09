@@ -17,6 +17,11 @@
       tags: login
       when: COMPONENT == "login"
 
+    - role: redis
+      tags: redis
+      when: COMPONENT == "redis"
+
+
 
 
 
