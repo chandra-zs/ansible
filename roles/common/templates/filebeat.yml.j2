@@ -1,17 +1,20 @@
 filebeat.inputs:
+{% for log_filename in LOG_FILES %}
 - type: log
-  # json.keys_under_root: true
   enabled: true
   paths:
-    - /var/log/
+    - {{ log_filename.file }}
+  fields:
+    logType: {{ log_filename.type }}
+{% endfor %}
 
 {% if IS_STRUCTURED %}
 output.elasticsearch:
-  hosts: ["localhost:9200"]
+  hosts: ["172.31.0.17:9200"]
   #index: "{{COMPONENT}}-%{+yyyy.MM.dd}"
 {% else %}
 output.logstash:
-  hosts: ["localhost:5044"]
+  hosts: ["172.31.0.17:5044"]
 {% endif %}
 
 
