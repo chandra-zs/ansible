@@ -51,6 +51,7 @@
         enabled: yes
 
     - name: Install Node Exporter Prometheus Monitoring
+      become: yes
       include_role:
         name: common
         tasks_from: node_exporter
