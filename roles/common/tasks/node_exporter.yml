@@ -4,6 +4,7 @@
   register: dir_check
 
 - name: Install and Configure Node Exporter
+  become: yes
   when: not dir_check.stat.exists
   block:
     - name: Find the URL of Node_Exporter Latest Version URL
