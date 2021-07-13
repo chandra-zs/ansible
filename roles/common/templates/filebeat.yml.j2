@@ -4,8 +4,6 @@ filebeat.inputs:
   enabled: true
   paths:
     - /var/log/
-  fields:
-    logType: {{ log_filename.type }}
 
 {% if IS_STRUCTURED %}
 output.elasticsearch:
@@ -16,10 +14,6 @@ output.logstash:
   hosts: ["localhost:5044"]
 {% endif %}
 
-
-setup.template.name: "{{COMPONENT}}"
-setup.template.pattern: "{{COMPONENT}}-*"
-setup.ilm.enabled: false
 
 ## These always are defaults
 filebeat.config.modules:
