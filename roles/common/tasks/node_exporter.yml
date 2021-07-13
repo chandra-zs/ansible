@@ -7,7 +7,7 @@
   when: not dir_check.stat.exists
   block:
     - name: find the url of node_exporter latest version
-      shell: curl -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http)
+      shell: curl -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http
       register: node_exporter_version
 
     - name: Grab filename and directory name from the url
