@@ -7,31 +7,37 @@
   when: not dir_check.stat.exists
   block:
     - name: Find the URL of Node_Exporter Latest Version URL
+      become: yes
       shell: curl  -L -s https://prometheus.io/download/  | grep tar | grep node_exporter | grep linux-amd64  | sed -e "s|>| |g" -e 's|<| |g' -e 's|"| |g' |xargs -n1 | grep ^http
       args:
         warn: false # set warn=false to prevent warning
       register: node_exporter_url
 
     - name: Grab filename and Directory Name from the URL
+      become: yes
       set_fact:
         FILENAME: "{{node_exporter_url.stdout.split('/') | last}}"
         DIRNAME: "{{ node_exporter_url.stdout.split('/') | last | regex_replace('.tar.gz', '')  }}"
 
     - name: Download Node Exporter
+      become: yes
       unarchive:
         src: "{{node_exporter_url.stdout}}"
         dest: /opt
         remote_src: yes
 
     - name: Rename to Standard Name
+      become: yes
       shell: mv /opt/{{DIRNAME}} /opt/node_exporter
 
     - name: Copy SystemdD Script
+      become: yes
       copy:
         src: node_exporter.service
         dest: /etc/systemd/system/node_exporter.service
 
     - name: Start Node_exporter service
+      become: yes
       systemd:
         name: node_exporter
         state: started
