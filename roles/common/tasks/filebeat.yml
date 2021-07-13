@@ -1,31 +1,37 @@
 - name: Install Apt Addons
+  become: yes
   apt:
     name: apt-transport-https
     state: present
     update_cache: yes
 
 - name: Add Filebeat Key
+  become: yes
   apt_key:
     url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
     state: present
 
 - name: Add Filebeat repository into sources list
+  become: yes
   apt_repository:
     repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
     state: present
 
 - name: Install Filebeat
+  become: yes
   apt:
     name: filebeat
     state: present
     update_cache: yes
 
 - name: Update Filebeat Configuration
+  become: yes
   template:
     src: filebeat.yml.j2
     dest: /etc/filebeat/filebeat.yml
 
 - name: Restart filebeat service
+  become: yes
   systemd:
     name: filebeat
     state: restarted
