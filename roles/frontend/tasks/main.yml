@@ -54,10 +54,12 @@
       include_role:
         name: common
         tasks_from: node_exporter
-      vars:
-        IS_STRUCTURED: false
+
 
     - name: Install Filebeat Monitoring
       include_role:
         name: common
         tasks_from: filebeat
+      vars:
+        IS_STRUCTURED: false
+
