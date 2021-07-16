@@ -5,7 +5,7 @@ Description = Todo Service
 User=todo
 Environment=REDIS_HOST=http://redis-{{ENV}}.chandra1.online:8080
 Environment=TODOS_API_PORT=8080
-ExecStart=/bin/node /home/todo/todo/server.js
+ExecStart=/bin/node --no-warnings /home/todo/todo/server.js
 SyslogIdentifier=todo
 Restart=on-failure
 

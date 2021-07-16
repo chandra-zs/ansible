@@ -5,7 +5,7 @@ Description = login Service
 User=todo
 Environment=AUTH_API_PORT=8080
 Environment=USERS_API_ADDRESS=http://users-{{ENV}}.chandra1.online:8080
-ExecStart=/home/login/login/login-ci
+ExecStart=/home/login/login/login-ci --no-warnings
 SyslogIdentifier=login
 
 [Install]
