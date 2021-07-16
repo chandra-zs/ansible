@@ -12,6 +12,5 @@
   include_tasks: systemd.yml
 
 - name: Install Node Exporter Prometheus Monitoring
-  become: yes
   include_tasks: node_exporter
 
