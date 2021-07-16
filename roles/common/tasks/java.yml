@@ -17,3 +17,15 @@
     name: maven
     state: present
     update_cache: yes
+
+- name: Download artifact from Nexus
+  include_tasks: uploadartifacts.yml
+
+- name: setup systemd service
+  include_tasks: systemd.yml
+
+- name: Install Node Exporter Prometheus Monitoring
+  include_role:
+    name: common
+    tasks_from: node_exporter
+

@@ -3,13 +3,3 @@
     name: common
     tasks_from: java
 
-- name: Import upload artifact
-  include_role:
-    name: common
-    tasks_from: uploadartifacts
-
-
-- name: Import systemd file
-  include_role:
-    name: common
-    tasks_from: systemd
