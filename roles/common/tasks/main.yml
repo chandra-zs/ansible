@@ -3,11 +3,13 @@
   shell: set-hostname {{COMPONENT}}
 
 - name: Update Rsyslog config
+  become: yes
   copy:
     src: rsyslog.conf
     dest: /etc/rsyslog.d/todo.conf
 
 - name: Restart rsyslog
+  become: yes
   systemd:
     name: rsyslog
     state: restarted
