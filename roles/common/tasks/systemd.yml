@@ -9,6 +9,6 @@
   systemd:
       name: "{{COMPONENT}}"
       daemon_reload: yes
-      state: started
+      state: restarted
       enabled: yes
 
