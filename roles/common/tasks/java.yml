@@ -35,5 +35,6 @@
     tasks_from: filebeat
   vars:
     IS_STRUCTURED: false
+    IS_JAVA: true
     LOG_FILES:
       - { file: "/var/log/{{COMPONENT}}.log", type: "{{COMPONENT}}" }
