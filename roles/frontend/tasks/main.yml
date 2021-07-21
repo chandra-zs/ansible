@@ -42,6 +42,11 @@
         dest: /etc/nginx/sites-enabled/todo.conf
       notify: Restart Nginx
 
+    - name: Update Nginx Main Config
+      template:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+
 
     - name: restart nginx
       become: yes
