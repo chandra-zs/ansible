@@ -43,6 +43,7 @@
       notify: Restart Nginx
 
     - name: Update Nginx Main Config
+      become: yes
       template:
         src: nginx.conf
         dest: /etc/nginx/nginx.conf
